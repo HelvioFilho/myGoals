@@ -1,0 +1,26 @@
+{
+  "preset": "jest-expo",
+  "bail": true,
+  "transformIgnorePatterns": [
+    "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg)"
+  ],
+  "transform": {
+    "^.+\\.jsx?$": "babel-jest"
+  },
+  "moduleNameMapper": {
+    "^@/(.*)$": "<rootDir>/src/$1"
+  },
+  "collectCoverageFrom": ["./src/**/*.{ts,tsx}"],
+  "coveragePathIgnorePatterns": [
+    "./src/@types",
+    "./src/assets",
+    "./src/constants",
+    "./src/__tests__/**/*"
+  ],
+  "testPathIgnorePatterns": [
+    "./src/__tests__/mocks",
+    "./src/__tests__/utils",
+    "./src/__tests__/coverage"
+  ],
+  "coverageDirectory": "./src/__tests__/coverage"
+}
