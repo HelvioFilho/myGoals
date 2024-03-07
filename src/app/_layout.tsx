@@ -3,6 +3,7 @@ import "@/theme/global.css";
 import { Slot } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import * as SplashScreen from "expo-splash-screen";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import {
   useFonts,
@@ -30,9 +31,11 @@ export default function Layout() {
   }
 
   return (
-    <View style={{ flex: 1, backgroundColor: colors.gray[600] }}>
+    <GestureHandlerRootView
+      style={{ flex: 1, backgroundColor: colors.gray[600] }}
+    >
       <StatusBar style="light" />
       <Slot />
-    </View>
+    </GestureHandlerRootView>
   );
 }
