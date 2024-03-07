@@ -1,0 +1,38 @@
+import "@/theme/global.css";
+
+import { Slot } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import * as SplashScreen from "expo-splash-screen";
+
+import {
+  useFonts,
+  OpenSans_700Bold,
+  OpenSans_400Regular,
+  OpenSans_600SemiBold,
+} from "@expo-google-fonts/open-sans";
+
+import { colors } from "@/theme/colors";
+import { View } from "react-native";
+
+SplashScreen.preventAutoHideAsync();
+
+export default function Layout() {
+  const [fontsLoaded] = useFonts({
+    OpenSans_600SemiBold,
+    OpenSans_400Regular,
+    OpenSans_700Bold,
+  });
+
+  if (fontsLoaded) {
+    SplashScreen.hideAsync();
+  } else {
+    return;
+  }
+
+  return (
+    <View style={{ flex: 1, backgroundColor: colors.gray[600] }}>
+      <StatusBar style="light" />
+      <Slot />
+    </View>
+  );
+}
