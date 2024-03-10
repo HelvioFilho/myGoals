@@ -4,6 +4,8 @@ import Bottom from "@gorhom/bottom-sheet";
 import { useRouter } from "expo-router";
 import dayjs from "dayjs";
 
+import { useGoalRepository } from "@/storage/useGoalRepository";
+
 import { Input } from "@/components/Input";
 import { Header } from "@/components/Header";
 import { Button } from "@/components/Button";
@@ -14,38 +16,12 @@ import { Transactions, TransactionsProps } from "@/components/Transactions";
 import { mocks } from "@/utils/mocks";
 
 export default function Home() {
-  // const goals = [
-  //   {
-  //     id: "1",
-  //     name: "Comprar um Carro",
-  //     current: 10003.7,
-  //     total: 60000,
-  //   },
-  //   {
-  //     id: "2",
-  //     name: "Viagem",
-  //     current: 1500,
-  //     total: 2000,
-  //   },
-  //   {
-  //     id: "3",
-  //     name: "Trocar a memória do computador",
-  //     current: 20,
-  //     total: 375,
-  //   },
-  // ];
-
-  // const transactions = [
-  //   {
-  //     date: "01/01/2022",
-  //     amount: 100,
-  //   },
-  // ];
-
   const [name, setName] = useState("");
   const [total, setTotal] = useState("");
   const [transactions, setTransactions] = useState<TransactionsProps>([]);
   const [goals, setGoals] = useState<GoalsProps>([]);
+
+  const useGoal = useGoalRepository();
 
   const { navigate } = useRouter();
 
@@ -61,6 +37,8 @@ export default function Home() {
         return Alert.alert("Erro", "Valor inválido.");
       }
 
+      useGoal.create({ name, total: totalAsNumber });
+
       console.log({ name, total: totalAsNumber });
 
       Keyboard.dismiss();
@@ -69,6 +47,7 @@ export default function Home() {
 
       setName("");
       setTotal("");
+      fetchGoals();
     } catch (error) {
       Alert.alert("Erro", "Não foi possível cadastrar.");
       console.log(error);
@@ -81,7 +60,7 @@ export default function Home() {
 
   async function fetchGoals() {
     try {
-      const response = mocks.goals;
+      const response = useGoal.all();
       setGoals(response);
     } catch (error) {
       console.log(error);
