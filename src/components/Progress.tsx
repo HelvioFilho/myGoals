@@ -6,7 +6,7 @@ type ProgressProps = {
 
 export function Progress({ percentage }: ProgressProps) {
   const width = percentage > 100 ? 100 : percentage;
-  const value = percentage.toFixed(0) + "%";
+  const value = percentage ? percentage.toFixed(0) + "%" : "0%";
 
   return (
     <View className="w-full h-7 rounded-full bg-gray-400 overflow-hidden flex-row items-center">
