@@ -19,7 +19,6 @@ import { TransactionTypeSelect } from "@/components/TransactionTypeSelect";
 
 import { currencyFormat } from "@/utils/currencyFormat";
 import dayjs from "dayjs";
-import { mocks } from "@/utils/mocks";
 
 type DetailsProps = {
   name: string;
@@ -85,7 +84,7 @@ export default function Details() {
         amountAsNumber = amountAsNumber * -1;
       }
 
-      console.log({ goalId, amount: amountAsNumber });
+      useTransaction.create({ goalId, amount: amountAsNumber });
 
       Alert.alert("Sucesso", "Transação registrada!");
 
