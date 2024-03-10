@@ -4,6 +4,7 @@ import Bottom from "@gorhom/bottom-sheet";
 import { useLocalSearchParams, useRouter } from "expo-router";
 
 import { useGoalRepository } from "@/storage/useGoalRepository";
+import { useTransactionRepository } from "@/storage/useTransactionRepository";
 
 import { Input } from "@/components/Input";
 import { Button } from "@/components/Button";
@@ -34,6 +35,7 @@ export default function Details() {
   const [goal, setGoal] = useState<DetailsProps>({} as DetailsProps);
 
   const useGoal = useGoalRepository();
+  const useTransaction = useTransactionRepository();
 
   const routeParams = useLocalSearchParams();
   const goalId = Number(routeParams.id);
@@ -47,7 +49,7 @@ export default function Details() {
     try {
       if (goalId) {
         const goal = useGoal.show(goalId);
-        const transactions = mocks.transactions;
+        const transactions = useTransaction.findByGoal(goalId);
 
         if (!goal || !transactions) {
           return back();
