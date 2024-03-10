@@ -93,6 +93,8 @@ export default function Details() {
 
       setAmount("");
       setType("up");
+
+      fetchDetails();
     } catch (error) {
       console.log(error);
     }
