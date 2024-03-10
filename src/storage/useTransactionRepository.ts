@@ -46,8 +46,19 @@ export function useTransactionRepository() {
     }
   }
 
+  function findLatest() {
+    try {
+      return database.getAllSync<TransactionResponseDatabase>(
+        "SELECT * FROM transactions ORDER BY created_at DESC LIMIT 10"
+      );
+    } catch (error) {
+      throw error;
+    }
+  }
+
   return {
     create,
     findByGoal,
+    findLatest,
   };
 }
