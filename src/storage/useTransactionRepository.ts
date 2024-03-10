@@ -5,6 +5,13 @@ type TransactionCreateDatabase = {
   goalId: number;
 };
 
+type TransactionResponseDatabase = {
+  id: string;
+  amount: number;
+  goal_id: number;
+  created_at: number;
+};
+
 export function useTransactionRepository() {
   const database = useSQLiteContext();
 
@@ -23,7 +30,24 @@ export function useTransactionRepository() {
     }
   }
 
+  function findByGoal(goalId: number) {
+    try {
+      const statement = database.prepareSync(
+        "SELECT * FROM transactions WHERE goal_id = $goal_id"
+      );
+
+      const result = statement.executeSync<TransactionResponseDatabase>({
+        $goal_id: goalId,
+      });
+
+      return result.getAllSync();
+    } catch (error) {
+      throw error;
+    }
+  }
+
   return {
     create,
+    findByGoal,
   };
 }
