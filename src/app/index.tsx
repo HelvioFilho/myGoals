@@ -5,6 +5,7 @@ import { useRouter } from "expo-router";
 import dayjs from "dayjs";
 
 import { useGoalRepository } from "@/storage/useGoalRepository";
+import { useTransactionRepository } from "@/storage/useTransactionRepository";
 
 import { Input } from "@/components/Input";
 import { Header } from "@/components/Header";
@@ -13,8 +14,6 @@ import { BottomSheet } from "@/components/BottomSheet";
 import { Goals, GoalsProps } from "@/components/Goals";
 import { Transactions, TransactionsProps } from "@/components/Transactions";
 
-import { mocks } from "@/utils/mocks";
-
 export default function Home() {
   const [name, setName] = useState("");
   const [total, setTotal] = useState("");
@@ -22,6 +21,7 @@ export default function Home() {
   const [goals, setGoals] = useState<GoalsProps>([]);
 
   const useGoal = useGoalRepository();
+  const useTransaction = useTransactionRepository();
 
   const { navigate } = useRouter();
 
@@ -69,7 +69,7 @@ export default function Home() {
 
   async function fetchTransactions() {
     try {
-      const response = mocks.transactions;
+      const response = useTransaction.findLatest();
 
       setTransactions(
         response.map((item) => ({
