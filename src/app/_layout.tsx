@@ -1,3 +1,4 @@
+import "@/libs/dayjs";
 import "@/theme/global.css";
 
 import { Slot } from "expo-router";
