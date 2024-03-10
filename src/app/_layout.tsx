@@ -14,7 +14,6 @@ import {
 } from "@expo-google-fonts/open-sans";
 
 import { colors } from "@/theme/colors";
-import { View } from "react-native";
 
 SplashScreen.preventAutoHideAsync();
 
