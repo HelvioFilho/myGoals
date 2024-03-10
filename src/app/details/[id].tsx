@@ -3,6 +3,8 @@ import { Alert, Keyboard, View } from "react-native";
 import Bottom from "@gorhom/bottom-sheet";
 import { useLocalSearchParams, useRouter } from "expo-router";
 
+import { useGoalRepository } from "@/storage/useGoalRepository";
+
 import { Input } from "@/components/Input";
 import { Button } from "@/components/Button";
 import { Header } from "@/components/Header";
@@ -31,6 +33,8 @@ export default function Details() {
   const [type, setType] = useState<"up" | "down">("up");
   const [goal, setGoal] = useState<DetailsProps>({} as DetailsProps);
 
+  const useGoal = useGoalRepository();
+
   const routeParams = useLocalSearchParams();
   const goalId = Number(routeParams.id);
   const { back } = useRouter();
@@ -42,7 +46,7 @@ export default function Details() {
   function fetchDetails() {
     try {
       if (goalId) {
-        const goal = mocks.goal;
+        const goal = useGoal.show(goalId);
         const transactions = mocks.transactions;
 
         if (!goal || !transactions) {
