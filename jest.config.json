@@ -15,7 +15,9 @@
     "./src/@types",
     "./src/assets",
     "./src/constants",
-    "./src/__tests__/**/*"
+    "./src/theme",
+    "./src/libs/dayjs",
+    "./src/storage"
   ],
   "testPathIgnorePatterns": [
     "./src/__tests__/mocks",

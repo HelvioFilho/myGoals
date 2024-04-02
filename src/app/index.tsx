@@ -39,8 +39,6 @@ export default function Home() {
 
       useGoal.create({ name, total: totalAsNumber });
 
-      console.log({ name, total: totalAsNumber });
-
       Keyboard.dismiss();
       handleBottomSheetClose();
       Alert.alert("Sucesso", "Meta cadastrada!");
@@ -63,7 +61,7 @@ export default function Home() {
       const response = useGoal.all();
       setGoals(response);
     } catch (error) {
-      console.log(error);
+      Alert.alert("Erro", "Não foi possível carregar as metas.");
     }
   }
 
@@ -78,7 +76,7 @@ export default function Home() {
         }))
       );
     } catch (error) {
-      console.log(error);
+      Alert.alert("Erro", "Não foi possível carregar as transações.");
     }
   }
 
