@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1712063189686" clover="3.2.0">
-  <project timestamp="1712063189686" name="All files">
-    <metrics statements="139" coveredstatements="63" conditionals="32" coveredconditionals="16" methods="49" coveredmethods="30" elements="220" coveredelements="109" complexity="0" loc="139" ncloc="139" packages="5" files="20" classes="20"/>
+<coverage generated="1712070918981" clover="3.2.0">
+  <project timestamp="1712070918981" name="All files">
+    <metrics statements="111" coveredstatements="64" conditionals="32" coveredconditionals="18" methods="39" coveredmethods="31" elements="182" coveredelements="113" complexity="0" loc="111" ncloc="111" packages="4" files="17" classes="17"/>
     <package name="app">
       <metrics statements="44" coveredstatements="38" conditionals="6" coveredconditionals="4" methods="11" coveredmethods="10"/>
       <file name="_layout.tsx" path="/Users/helviofilho/Documents/react-native/myGoals/src/app/_layout.tsx">
@@ -103,7 +103,7 @@
       </file>
     </package>
     <package name="components">
-      <metrics statements="26" coveredstatements="24" conditionals="14" coveredconditionals="12" methods="21" coveredmethods="19"/>
+      <metrics statements="25" coveredstatements="25" conditionals="14" coveredconditionals="14" methods="20" coveredmethods="20"/>
       <file name="BackButton.tsx" path="/Users/helviofilho/Documents/react-native/myGoals/src/components/BackButton.tsx">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="7" count="2" type="stmt"/>
@@ -111,10 +111,9 @@
         <line num="12" count="2" type="stmt"/>
       </file>
       <file name="BottomSheet.tsx" path="/Users/helviofilho/Documents/react-native/myGoals/src/components/BottomSheet.tsx">
-        <metrics statements="3" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="13" count="2" type="stmt"/>
         <line num="15" count="21" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
       </file>
       <file name="Button.tsx" path="/Users/helviofilho/Documents/react-native/myGoals/src/components/Button.tsx">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
@@ -144,10 +143,10 @@
         <line num="6" count="2" type="stmt"/>
       </file>
       <file name="Progress.tsx" path="/Users/helviofilho/Documents/react-native/myGoals/src/components/Progress.tsx">
-        <metrics statements="3" coveredstatements="3" conditionals="8" coveredconditionals="6" methods="1" coveredmethods="1"/>
-        <line num="8" count="18" type="cond" truecount="1" falsecount="1"/>
-        <line num="9" count="18" type="cond" truecount="1" falsecount="1"/>
-        <line num="11" count="18" type="stmt"/>
+        <metrics statements="3" coveredstatements="3" conditionals="8" coveredconditionals="8" methods="1" coveredmethods="1"/>
+        <line num="8" count="19" type="cond" truecount="2" falsecount="0"/>
+        <line num="9" count="19" type="cond" truecount="2" falsecount="0"/>
+        <line num="11" count="19" type="stmt"/>
       </file>
       <file name="Transaction.tsx" path="/Users/helviofilho/Documents/react-native/myGoals/src/components/Transaction.tsx">
         <metrics statements="1" coveredstatements="1" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
@@ -155,12 +154,12 @@
       </file>
       <file name="TransactionType.tsx" path="/Users/helviofilho/Documents/react-native/myGoals/src/components/TransactionType.tsx">
         <metrics statements="1" coveredstatements="1" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
-        <line num="16" count="10" type="stmt"/>
+        <line num="16" count="8" type="stmt"/>
       </file>
       <file name="TransactionTypeSelect.tsx" path="/Users/helviofilho/Documents/react-native/myGoals/src/components/TransactionTypeSelect.tsx">
-        <metrics statements="3" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
-        <line num="18" count="3" type="stmt"/>
-        <line num="27" count="0" type="stmt"/>
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+        <line num="18" count="2" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
         <line num="37" count="1" type="stmt"/>
       </file>
       <file name="Transactions.tsx" path="/Users/helviofilho/Documents/react-native/myGoals/src/components/Transactions.tsx">
@@ -168,45 +167,6 @@
         <line num="12" count="22" type="stmt"/>
         <line num="19" count="14" type="stmt"/>
         <line num="23" count="8" type="stmt"/>
-      </file>
-    </package>
-    <package name="storage">
-      <metrics statements="27" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="0"/>
-      <file name="databaseInit.ts" path="/Users/helviofilho/Documents/react-native/myGoals/src/storage/databaseInit.ts">
-        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="4" count="0" type="stmt"/>
-      </file>
-      <file name="useGoalRepository.ts" path="/Users/helviofilho/Documents/react-native/myGoals/src/storage/useGoalRepository.ts">
-        <metrics statements="12" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="20" count="0" type="stmt"/>
-        <line num="24" count="0" type="stmt"/>
-        <line num="29" count="0" type="stmt"/>
-        <line num="34" count="0" type="stmt"/>
-        <line num="35" count="0" type="stmt"/>
-        <line num="42" count="0" type="stmt"/>
-        <line num="47" count="0" type="stmt"/>
-        <line num="55" count="0" type="stmt"/>
-        <line num="57" count="0" type="stmt"/>
-        <line num="60" count="0" type="stmt"/>
-      </file>
-      <file name="useTransactionRepository.ts" path="/Users/helviofilho/Documents/react-native/myGoals/src/storage/useTransactionRepository.ts">
-        <metrics statements="14" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="20" count="0" type="stmt"/>
-        <line num="24" count="0" type="stmt"/>
-        <line num="29" count="0" type="stmt"/>
-        <line num="34" count="0" type="stmt"/>
-        <line num="35" count="0" type="stmt"/>
-        <line num="39" count="0" type="stmt"/>
-        <line num="43" count="0" type="stmt"/>
-        <line num="45" count="0" type="stmt"/>
-        <line num="50" count="0" type="stmt"/>
-        <line num="51" count="0" type="stmt"/>
-        <line num="55" count="0" type="stmt"/>
-        <line num="59" count="0" type="stmt"/>
       </file>
     </package>
     <package name="utils">
