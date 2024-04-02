@@ -22,7 +22,6 @@ export const BottomSheet = forwardRef<Bottom, BottomSheetProps>(
           borderColor: colors.gray[400],
           backgroundColor: colors.gray[700],
         }}
-        handleComponent={() => null}
       >
         <View className="p-8 gap-4">
           <View className="flex-row">
