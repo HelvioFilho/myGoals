@@ -29,7 +29,7 @@ type DetailsProps = {
 };
 export default function Details() {
   const [amount, setAmount] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [type, setType] = useState<"up" | "down">("up");
   const [goal, setGoal] = useState<DetailsProps>({} as DetailsProps);
 
@@ -46,29 +46,27 @@ export default function Details() {
 
   function fetchDetails() {
     try {
-      if (goalId) {
-        const goal = useGoal.show(goalId);
-        const transactions = useTransaction.findByGoal(goalId);
+      const goal = useGoal.show(goalId);
+      const transactions = useTransaction.findByGoal(goalId);
 
-        if (!goal || !transactions) {
-          return back();
-        }
-
-        setGoal({
-          name: goal.name,
-          current: currencyFormat(goal.current),
-          total: currencyFormat(goal.total),
-          percentage: (goal.current / goal.total) * 100,
-          transactions: transactions.map((item) => ({
-            ...item,
-            date: dayjs(item.created_at).format("DD/MM/YYYY [às] HH:mm"),
-          })),
-        });
-
-        setIsLoading(false);
+      if (!goal || !transactions) {
+        return back();
       }
+
+      setGoal({
+        name: goal.name,
+        current: currencyFormat(goal.current),
+        total: currencyFormat(goal.total),
+        percentage: (goal.current / goal.total) * 100,
+        transactions: transactions.map((item) => ({
+          ...item,
+          date: dayjs(item.created_at).format("DD/MM/YYYY [às] HH:mm"),
+        })),
+      });
+
+      setIsLoading(false);
     } catch (error) {
-      console.log(error);
+      Alert.alert("Erro", "Não foi possível carregar as transações.");
     }
   }
 
@@ -96,17 +94,17 @@ export default function Details() {
 
       fetchDetails();
     } catch (error) {
-      console.log(error);
+      Alert.alert("Erro", "Não foi possível registrar a transação.");
     }
-  }
-
-  if (isLoading) {
-    return <Loading />;
   }
 
   useEffect(() => {
     fetchDetails();
   }, []);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <View className="flex-1 p-8 pt-12">
@@ -118,7 +116,11 @@ export default function Details() {
 
       <Transactions transactions={goal.transactions} />
 
-      <Button title="Nova transação" onPress={handleBottomSheetOpen} />
+      <Button
+        testID="add-transaction-button"
+        title="Nova transação"
+        onPress={handleBottomSheetOpen}
+      />
 
       <BottomSheet
         ref={bottomSheetRef}
@@ -129,13 +131,18 @@ export default function Details() {
         <TransactionTypeSelect onChange={setType} selected={type} />
 
         <Input
+          testID="amount-input"
           placeholder="Valor"
           keyboardType="numeric"
           onChangeText={setAmount}
           value={amount}
         />
 
-        <Button title="Confirmar" onPress={handleNewTransaction} />
+        <Button
+          testID="register-transaction-button"
+          title="Confirmar"
+          onPress={handleNewTransaction}
+        />
       </BottomSheet>
     </View>
   );
