@@ -17,7 +17,8 @@
     "./src/constants",
     "./src/theme",
     "./src/libs/dayjs",
-    "./src/storage"
+    "./src/storage",
+    "./src/app/_layout.tsx"
   ],
   "testPathIgnorePatterns": [
     "./src/__tests__/mocks",
