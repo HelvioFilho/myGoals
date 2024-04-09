@@ -7,7 +7,8 @@ export async function databaseInit(database: SQLiteDatabase) {
       CREATE TABLE IF NOT EXISTS goals (
         id INTEGER PRIMARY KEY NOT NULL, 
         name TEXT NOT NULL, 
-        total REAL NOT NULL
+        total REAL NOT NULL,
+        completed_in INTEGER DEFAULT NULL
       );
 
       CREATE TABLE IF NOT EXISTS transactions (
