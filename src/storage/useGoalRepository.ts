@@ -10,6 +10,7 @@ export type GoalResponseDatabase = {
   name: string;
   total: number;
   current: number;
+  completed_in: number | null;
 };
 
 export function useGoalRepository() {
@@ -30,12 +31,15 @@ export function useGoalRepository() {
     }
   }
 
-  function all() {
+  function all(hundred: boolean = true) {
     try {
+      const notValue = hundred ? "NOT" : "";
+
       return database.getAllSync<GoalResponseDatabase>(`
-        SELECT g.id, g.name, g.total, COALESCE(SUM(t.amount), 0) AS current
+        SELECT g.id, g.name, g.total, g.completed_in, COALESCE(SUM(t.amount), 0) AS current
         FROM goals AS g
         LEFT JOIN transactions t ON t.goal_id = g.id
+        WHERE g.completed_in IS ${notValue} NULL
         GROUP BY g.id, g.name, g.total;
       `);
     } catch (error) {
@@ -45,7 +49,7 @@ export function useGoalRepository() {
 
   function show(id: number) {
     const statement = database.prepareSync(`
-      SELECT g.id, g.name, g.total, COALESCE(SUM(t.amount), 0) AS current
+      SELECT g.id, g.name, g.total, g.completed_in, COALESCE(SUM(t.amount), 0) AS current
       FROM goals AS g
       LEFT JOIN transactions t ON t.goal_id = g.id
       WHERE g.id = $id
@@ -57,9 +61,22 @@ export function useGoalRepository() {
     return result.getFirstSync();
   }
 
+  function markGoalAsCompleted(goalId: number, time: number | null) {
+    try {
+      const statement = database.prepareSync(
+        "UPDATE goals SET completed_in = ? WHERE id = ?"
+      );
+
+      statement.executeSync([time, goalId]);
+    } catch (error) {
+      throw error;
+    }
+  }
+
   return {
     create,
     all,
+    markGoalAsCompleted,
     show,
   };
 }
