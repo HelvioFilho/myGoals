@@ -1,7 +1,8 @@
+import dayjs from "dayjs";
 import { useEffect, useRef, useState } from "react";
 import { Alert, Keyboard, View } from "react-native";
-import Bottom from "@gorhom/bottom-sheet";
 import { useLocalSearchParams, useRouter } from "expo-router";
+import Bottom from "@gorhom/bottom-sheet";
 
 import { useGoalRepository } from "@/storage/useGoalRepository";
 import { useTransactionRepository } from "@/storage/useTransactionRepository";
@@ -18,7 +19,6 @@ import { TransactionProps } from "@/components/Transaction";
 import { TransactionTypeSelect } from "@/components/TransactionTypeSelect";
 
 import { currencyFormat } from "@/utils/currencyFormat";
-import dayjs from "dayjs";
 
 type DetailsProps = {
   name: string;
@@ -52,12 +52,21 @@ export default function Details() {
       if (!goal || !transactions) {
         return back();
       }
+      const percentage = (goal.current / goal.total) * 100;
+
+      if (percentage >= 100 && goal.completed_in === null) {
+        useGoal.markGoalAsCompleted(goalId, Math.floor(Date.now() / 1000));
+      }
+
+      if (percentage < 100 && goal.completed_in !== null) {
+        useGoal.markGoalAsCompleted(goalId, null);
+      }
 
       setGoal({
         name: goal.name,
         current: currencyFormat(goal.current),
         total: currencyFormat(goal.total),
-        percentage: (goal.current / goal.total) * 100,
+        percentage,
         transactions: transactions.map((item) => ({
           ...item,
           date: dayjs(item.created_at).format("DD/MM/YYYY [às] HH:mm"),
@@ -108,7 +117,9 @@ export default function Details() {
 
   return (
     <View className="flex-1 p-8 pt-12">
-      <BackButton />
+      <View className="mt-8">
+        <BackButton />
+      </View>
 
       <Header title={goal.name} subtitle={`${goal.current} de ${goal.total}`} />
 
