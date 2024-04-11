@@ -13,6 +13,12 @@ export type GoalResponseDatabase = {
   completed_in: number | null;
 };
 
+type GoalUpdateDatabase = {
+  id: number;
+  name?: string;
+  total?: number;
+};
+
 export function useGoalRepository() {
   const database = useSQLiteContext();
 
@@ -47,6 +53,29 @@ export function useGoalRepository() {
     }
   }
 
+  function update(goal: GoalUpdateDatabase) {
+    try {
+      const updates = [];
+      const params: { [key: string]: any } = { $id: goal.id };
+
+      if (goal.name !== undefined) {
+        updates.push("name = $name");
+        params.$name = goal.name;
+      }
+      if (goal.total !== undefined) {
+        updates.push("total = $total");
+        params.$total = goal.total;
+      }
+
+      const sql = `UPDATE goals SET ${updates.join(", ")} WHERE id = $id`;
+
+      const statement = database.prepareSync(sql);
+      statement.executeSync(params);
+    } catch (error) {
+      throw error;
+    }
+  }
+
   function show(id: number) {
     const statement = database.prepareSync(`
       SELECT g.id, g.name, g.total, g.completed_in, COALESCE(SUM(t.amount), 0) AS current
@@ -76,6 +105,7 @@ export function useGoalRepository() {
   return {
     create,
     all,
+    update,
     markGoalAsCompleted,
     show,
   };
