@@ -164,6 +164,26 @@ export default function Details() {
     }
   }
 
+  function handleGoalDelete() {
+    Alert.alert(
+      "Remover Meta",
+      "Tem certeza que deseja remover esta meta? Essa ação não pode ser desfeita!",
+      [
+        {
+          text: "Cancelar",
+          style: "cancel",
+        },
+        {
+          text: "Remover",
+          onPress: () => {
+            useGoal.deleteGoal(goalId);
+            back();
+          },
+        },
+      ]
+    );
+  }
+
   useEffect(() => {
     fetchDetails();
   }, []);
@@ -245,6 +265,7 @@ export default function Details() {
           <Button
             className="w-28 h-12 bg-red-500 items-center justify-center rounded-sm"
             title="Excluir"
+            onPress={handleGoalDelete}
           />
         </View>
       </BottomSheet>

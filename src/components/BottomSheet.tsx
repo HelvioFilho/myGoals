@@ -22,6 +22,10 @@ export const BottomSheet = forwardRef<Bottom, BottomSheetProps>(
           borderColor: colors.gray[400],
           backgroundColor: colors.gray[700],
         }}
+        handleIndicatorStyle={{
+          backgroundColor: colors.gray[300],
+          marginTop: 5,
+        }}
       >
         <View className="p-8 gap-4">
           <View className="flex-row">
