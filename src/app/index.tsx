@@ -58,7 +58,7 @@ export default function Home() {
 
   async function fetchGoals() {
     try {
-      const response = useGoal.all();
+      const response = useGoal.all(false);
       setGoals(response);
     } catch (error) {
       Alert.alert("Erro", "Não foi possível carregar as metas.");
@@ -80,6 +80,10 @@ export default function Home() {
     }
   }
 
+  function handleShowGoalsCompleted() {
+    navigate("/goalsCompleted");
+  }
+
   useEffect(() => {
     fetchGoals();
     fetchTransactions();
@@ -98,7 +102,11 @@ export default function Home() {
       />
 
       <Transactions transactions={transactions} />
-
+      <Button
+        testID="goals-button"
+        title="Metas Concluídas"
+        onPress={handleShowGoalsCompleted}
+      />
       <BottomSheet
         ref={bottomSheetRef}
         title="Nova meta"
