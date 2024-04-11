@@ -31,15 +31,15 @@ export function useGoalRepository() {
     }
   }
 
-  function all(hundred: boolean = true) {
+  function all(hundred: boolean) {
     try {
-      const notValue = hundred ? "NOT" : "";
+      const notValue = hundred ? "IS NOT NULL" : "IS NULL";
 
       return database.getAllSync<GoalResponseDatabase>(`
         SELECT g.id, g.name, g.total, g.completed_in, COALESCE(SUM(t.amount), 0) AS current
         FROM goals AS g
         LEFT JOIN transactions t ON t.goal_id = g.id
-        WHERE g.completed_in IS ${notValue} NULL
+        WHERE g.completed_in ${notValue}
         GROUP BY g.id, g.name, g.total;
       `);
     } catch (error) {
