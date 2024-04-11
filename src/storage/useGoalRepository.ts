@@ -37,6 +37,26 @@ export function useGoalRepository() {
     }
   }
 
+  function deleteGoal(goalId: number) {
+    try {
+      database.withTransactionSync(() => {
+        const statementGoals = database.prepareSync(
+          "DELETE FROM goals WHERE id = $id"
+        );
+
+        statementGoals.executeSync({ $id: goalId });
+
+        const statementTransactions = database.prepareSync(
+          "DELETE FROM transactions WHERE goal_id = $id"
+        );
+
+        statementTransactions.executeSync({ $id: goalId });
+      });
+    } catch (error) {
+      throw error;
+    }
+  }
+
   function all(hundred: boolean) {
     try {
       const notValue = hundred ? "IS NOT NULL" : "IS NULL";
@@ -104,6 +124,7 @@ export function useGoalRepository() {
 
   return {
     create,
+    deleteGoal,
     all,
     update,
     markGoalAsCompleted,
