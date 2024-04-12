@@ -5,8 +5,8 @@ import { colors } from "@/theme/colors";
 export function Input({ ...rest }: TextInputProps) {
   return (
     <TextInput
-      placeholderTextColor={colors.gray[300]}
-      className="w-full h-14 border border-gray-400 rounded p-4 text-white font-regular text-base"
+      placeholderTextColor={colors.customGray[400]}
+      className="w-full h-14 bg-white border border-blue-500 rounded p-4 text-black font-regular text-base"
       {...rest}
     />
   );

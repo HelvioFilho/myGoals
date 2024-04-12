@@ -18,7 +18,7 @@ export function Goal({ goal, ...rest }: Props) {
 
   return (
     <TouchableOpacity
-      className="h-44 w-40 bg-gray-500 rounded-lg p-4"
+      className="h-44 w-40 bg-blue-500 rounded-lg p-4"
       activeOpacity={0.7}
       {...rest}
     >
@@ -28,7 +28,7 @@ export function Goal({ goal, ...rest }: Props) {
         {currencyFormat(goal.current)}
       </Text>
 
-      <Text className="text-gray-300 font-regular text-sm flex-1">
+      <Text className="text-gray-100 font-regular text-sm flex-1">
         {currencyFormat(goal.total)}
       </Text>
 

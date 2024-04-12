@@ -90,23 +90,28 @@ export default function Home() {
   }, []);
 
   return (
-    <View className="flex-1 p-8">
-      <Header
-        title="Suas metas"
-        subtitle="Poupe hoje para colher os frutos amanhã."
-      />
-      <Goals
-        goals={goals}
-        onAdd={handleBottomSheetOpen}
-        onPress={handleDetails}
-      />
+    <View className="flex-1 pt-8">
+      <View className="px-8">
+        <Header
+          title="Suas metas"
+          subtitle="Poupe hoje para colher os frutos amanhã."
+        />
+        <Goals
+          goals={goals}
+          onAdd={handleBottomSheetOpen}
+          onPress={handleDetails}
+        />
+      </View>
 
-      <Transactions transactions={transactions} />
-      <Button
-        testID="goals-button"
-        title="Metas Concluídas"
-        onPress={handleShowGoalsCompleted}
-      />
+      <View className="flex-1 bg-slate-200 rounded-t-3xl px-8 mt-10 pt-4 pb-8">
+        <Transactions transactions={transactions} />
+        <Button
+          testID="goals-button"
+          title="Metas Concluídas"
+          onPress={handleShowGoalsCompleted}
+        />
+      </View>
+
       <BottomSheet
         ref={bottomSheetRef}
         title="Nova meta"

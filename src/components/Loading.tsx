@@ -7,7 +7,7 @@ export function Loading() {
     <ActivityIndicator
       testID="loading"
       className="flex-1 items-center justify-center bg-gray-600"
-      color={colors.green[500]}
+      color={colors.black}
     />
   );
 }

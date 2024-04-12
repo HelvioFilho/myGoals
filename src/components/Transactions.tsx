@@ -10,8 +10,8 @@ type Props = {
 
 export function Transactions({ transactions }: Props) {
   return (
-    <View className="flex-1 mt-10">
-      <Text className="text-white font-semiBold text-base border-b border-b-gray-400 pb-3">
+    <View className="flex-1">
+      <Text className="text-black font-semiBold text-base border-b border-b-gray-400 pb-3">
         Últimas transações
       </Text>
       <FlatList
@@ -20,7 +20,7 @@ export function Transactions({ transactions }: Props) {
         contentContainerClassName="py-6 gap-4"
         showsVerticalScrollIndicator={false}
         ListEmptyComponent={() => (
-          <Text className="text-gray-300 font-regular text-sm">
+          <Text className="text-black font-regular text-sm">
             Nenhuma transação registrada.
           </Text>
         )}

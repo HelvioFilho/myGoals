@@ -34,7 +34,7 @@ export default function Layout() {
 
   return (
     <GestureHandlerRootView
-      style={{ flex: 1, backgroundColor: colors.gray[600] }}
+      style={{ flex: 1, backgroundColor: colors.backgroundApp }}
     >
       <StatusBar style="light" />
       <SQLiteProvider databaseName="mygoals.db" onInit={databaseInit}>

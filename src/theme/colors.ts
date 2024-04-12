@@ -1,21 +1,27 @@
 export const colors = {
-  white: "#FFFFFF",
+  white: "#ffffff",
   black: "#000000",
+  backgroundApp: "#19416C",
 
-  blue: {
-    500: "#4551E6",
+  skyBlue: {
+    100: "#CFE0EB",
+    200: "#C6E7F8",
+    300: "#47B1FD",
+    500: "#05A6FF",
+    700: "#2AABF4",
   },
-  green: {
+  customGray: {
+    300: "#9CA3AF",
+    400: "#262626",
+    500: "#6B7280",
+  },
+  customGreen: {
+    100: "#7CC775",
     500: "#29E0A9",
+    700: "#227745",
+    900: "#1E404F",
   },
-  red: {
+  customRed: {
     500: "#FE6E78",
-  },
-  gray: {
-    300: "#7C7C8A",
-    400: "#202224",
-    500: "#16181A",
-    600: "#0E0F11",
-    700: "#040507",
   },
 };

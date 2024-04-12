@@ -15,20 +15,31 @@ type Props = PressableProps & {
 export function Transaction({ transaction, ...rest }: Props) {
   return (
     <Pressable
-      className="w-full h-16 bg-gray-500 rounded-sm border border-gray-400 p-4 flex-row items-center justify-between"
+      className={`
+        w-full 
+        h-16 
+        bg-gray-100 
+        rounded-xl 
+        border 
+        p-4 
+        flex-row 
+        items-center 
+        justify-between
+        ${transaction.amount < 0 ? "border-red-400" : "border-customGreen-100"}
+      `}
       {...rest}
     >
       <Text
-        className="font-regular text-sm"
-        style={{
-          color: transaction.amount < 0 ? colors.red[500] : colors.green[500],
-        }}
+        className={`
+          font-regular 
+          text-sm
+          ${transaction.amount < 0 ? "text-red-700" : "text-green-600"}`}
       >
         {transaction.amount < 0 ? "- " : "+ "}
         {currencyFormat(transaction.amount).replace("-", "")}
       </Text>
 
-      <Text className="text-gray-300 font-regular text-sm">
+      <Text className="text-black font-regular text-sm tracking-widest">
         {transaction.date}
       </Text>
     </Pressable>

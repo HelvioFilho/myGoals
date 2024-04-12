@@ -19,11 +19,11 @@ export const BottomSheet = forwardRef<Bottom, BottomSheetProps>(
         snapPoints={snapPoints}
         backgroundStyle={{
           borderWidth: 1,
-          borderColor: colors.gray[400],
-          backgroundColor: colors.gray[700],
+          borderColor: colors.skyBlue[100],
+          backgroundColor: colors.backgroundApp,
         }}
         handleIndicatorStyle={{
-          backgroundColor: colors.gray[300],
+          backgroundColor: colors.white,
           marginTop: 5,
         }}
       >
@@ -35,7 +35,7 @@ export const BottomSheet = forwardRef<Bottom, BottomSheetProps>(
             <MaterialIcons
               name="close"
               size={24}
-              color={colors.gray[300]}
+              color={colors.white}
               onPress={onClose}
             />
           </View>

@@ -193,29 +193,36 @@ export default function Details() {
   }
 
   return (
-    <View className="flex-1 p-8 pt-12">
-      <View className="mt-8 flex-row items-center justify-between">
-        <BackButton />
-        <TouchableOpacity
-          className="p-2 rounded-full items-center justify-center"
-          activeOpacity={0.7}
-          onPress={handleSettingsBottomSheetOpen}
-        >
-          <Ionicons name="settings" size={32} color="white" />
-        </TouchableOpacity>
+    <View className="flex-1 pt-12">
+      <View className="px-8">
+        <View className="mt-8 flex-row items-center justify-between">
+          <BackButton />
+          <TouchableOpacity
+            className="p-2 rounded-full items-center justify-center"
+            activeOpacity={0.7}
+            onPress={handleSettingsBottomSheetOpen}
+          >
+            <Ionicons name="settings" size={32} color="white" />
+          </TouchableOpacity>
+        </View>
+
+        <Header
+          title={goal.name}
+          subtitle={`${goal.current} de ${goal.total}`}
+        />
+
+        <Progress percentage={goal.percentage} />
       </View>
 
-      <Header title={goal.name} subtitle={`${goal.current} de ${goal.total}`} />
+      <View className="flex-1 bg-slate-200 rounded-t-3xl px-8 mt-10 pt-4 pb-8">
+        <Transactions transactions={goal.transactions} />
 
-      <Progress percentage={goal.percentage} />
-
-      <Transactions transactions={goal.transactions} />
-
-      <Button
-        testID="add-transaction-button"
-        title="Adicionar nova transação"
-        onPress={handleBottomSheetOpen}
-      />
+        <Button
+          testID="add-transaction-button"
+          title="Adicionar nova transação"
+          onPress={handleBottomSheetOpen}
+        />
+      </View>
       <BottomSheet
         ref={inputBottomSheetRef}
         title="Editar Meta"

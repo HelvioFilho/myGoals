@@ -21,7 +21,7 @@ export function TransactionTypeSelect({
         type={{
           icon: "add",
           title: "Depósito",
-          color: colors.green[500],
+          color: colors.customGreen[500],
           selected: selected === "up",
         }}
         onPress={() => onChange("up")}
@@ -31,7 +31,7 @@ export function TransactionTypeSelect({
         type={{
           icon: "remove",
           title: "Saque",
-          color: colors.red[500],
+          color: colors.customRed[500],
           selected: selected === "down",
         }}
         onPress={() => onChange("down")}

@@ -27,12 +27,12 @@ export function Goals({ goals, onPress, onAdd }: Props) {
       showsHorizontalScrollIndicator={false}
     >
       <TouchableOpacity
-        className="bg-green-500 w-16 max-h-44 items-center justify-center rounded-lg"
+        className="bg-green-600 w-16 max-h-44 items-center justify-center rounded-lg"
         activeOpacity={0.8}
         onPress={onAdd}
         testID="add-button"
       >
-        <MaterialIcons name="add" size={36} color={colors.black} />
+        <MaterialIcons name="add" size={36} color={colors.white} />
       </TouchableOpacity>
 
       {goals.map(({ id, name, current, total }) => (
