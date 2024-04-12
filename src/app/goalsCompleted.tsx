@@ -1,10 +1,11 @@
-import { BackButton } from "@/components/BackButton";
-import { GoalCompleted } from "@/components/GoalCompleted";
-import { Header } from "@/components/Header";
-import { useGoalRepository } from "@/storage/useGoalRepository";
-import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { Alert, FlatList, Text, View } from "react-native";
+import { useRouter } from "expo-router";
+
+import { Header } from "@/components/Header";
+import { BackButton } from "@/components/BackButton";
+import { GoalCompleted } from "@/components/GoalCompleted";
+import { useGoalRepository } from "@/storage/useGoalRepository";
 
 export type GoalsProps = {
   id: string;
@@ -43,7 +44,7 @@ export default function GoalsCompleted() {
       </View>
       <Header
         title="Metas concluídas"
-        subtitle="Parabéns, seu esforço valeu a pena."
+        subtitle={goals.length > 0 ? "Parabéns, seu esforço valeu a pena." : ""}
       />
 
       <FlatList
