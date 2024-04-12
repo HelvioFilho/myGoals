@@ -16,7 +16,7 @@ export function TransactionType({ type, ...rest }: TransactionTypeProps) {
   return (
     <Pressable
       testID="transaction-type-button"
-      className="px-4 py-2 bg-gray-400 rounded-sm flex-row items-center gap-2"
+      className="px-4 py-2 bg-blue-500 rounded-sm flex-row items-center gap-2"
       style={{ opacity: type.selected ? 1 : 0.5 }}
       {...rest}
     >
