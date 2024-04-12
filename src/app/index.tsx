@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Alert, Keyboard, View } from "react-native";
+import { Alert, View } from "react-native";
 import Bottom from "@gorhom/bottom-sheet";
 import { useRouter } from "expo-router";
 import dayjs from "dayjs";
@@ -38,13 +38,11 @@ export default function Home() {
       }
 
       useGoal.create({ name, total: totalAsNumber });
-
-      Keyboard.dismiss();
-      handleBottomSheetClose();
-      Alert.alert("Sucesso", "Meta cadastrada!");
-
       setName("");
       setTotal("");
+      handleBottomSheetClose();
+
+      Alert.alert("Sucesso", "Meta cadastrada hein!");
       fetchGoals();
     } catch (error) {
       Alert.alert("Erro", "Não foi possível cadastrar.");

@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { useEffect, useRef, useState } from "react";
-import { Alert, Keyboard, Text, TouchableOpacity, View } from "react-native";
+import { Alert, Text, TouchableOpacity, View } from "react-native";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import Bottom from "@gorhom/bottom-sheet";
 import { Ionicons } from "@expo/vector-icons";
@@ -116,7 +116,6 @@ export default function Details() {
       Alert.alert("Sucesso", "Transação registrada!");
 
       handleBottomSheetClose();
-      Keyboard.dismiss();
 
       setAmount("");
       setType("up");
