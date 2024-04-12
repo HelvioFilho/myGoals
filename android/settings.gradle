@@ -1,4 +1,4 @@
-rootProject.name = 'myGoals'
+rootProject.name = 'Minhas Metas'
 
 dependencyResolutionManagement {
   versionCatalogs {
