@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for components/TransactionTypeSelect.tsx</title>
+    <title>Code coverage report for components/GoalCompleted.tsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">components</a> TransactionTypeSelect.tsx</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">components</a> GoalCompleted.tsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -32,14 +32,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
@@ -104,7 +104,8 @@
 <a name='L39'></a><a href='#L39'>39</a>
 <a name='L40'></a><a href='#L40'>40</a>
 <a name='L41'></a><a href='#L41'>41</a>
-<a name='L42'></a><a href='#L42'>42</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -121,7 +122,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">34x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -130,7 +134,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -140,50 +143,50 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { View } from "react-native";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { currencyFormat } from "@/utils/currencyFormat";
+import { formatDate } from "@/utils/formatDate";
+import { Text, TouchableOpacity, TouchableOpacityProps } from "react-native";
+import { Progress } from "./Progress";
 &nbsp;
-import { TransactionType } from "@/components/TransactionType";
-&nbsp;
-import { colors } from "@/theme/colors";
-&nbsp;
-type TransactionType = "up" | "down";
-&nbsp;
-type TransactionTypeSelectProps = {
-  selected: TransactionType;
-  onChange: (type: TransactionType) =&gt; void;
+export type GoalProps = {
+  name: string;
+  current: number;
+  total: number;
+  completed_in: number | null;
 };
 &nbsp;
-export function TransactionTypeSelect({
-  selected,
-  onChange,
-}: TransactionTypeSelectProps) {
-  return (
-    &lt;View className="flex-row gap-4"&gt;
-      &lt;TransactionType
-        type={{
-          icon: "add",
-          title: "Depósito",
-          color: colors.customGreen[500],
-          selected: selected === "up",
-        }}
-        onPress={() =&gt; onChange("up")}
-      /&gt;
+type Props = TouchableOpacityProps &amp; {
+  goal: GoalProps;
+};
 &nbsp;
-      &lt;TransactionType
-        type={{
-          icon: "remove",
-          title: "Saque",
-          color: colors.customRed[500],
-          selected: selected === "down",
-        }}
-        onPress={() =&gt; onChange("down")}
-      /&gt;
-    &lt;/View&gt;
+export function GoalCompleted({ goal, ...rest }: Props) {
+  const percentage = (goal.current / goal.total) * 100;
+  const date = goal.completed_in &amp;&amp; formatDate(goal.completed_in);
+&nbsp;
+  return (
+    &lt;TouchableOpacity
+      className="w-full bg-blue-500 rounded-lg p-4 my-2"
+      activeOpacity={0.7}
+      {...rest}
+    &gt;
+      &lt;Text className="text-white font-bold text-lg mb-3"&gt;{goal.name}&lt;/Text&gt;
+&nbsp;
+      &lt;Text className="text-white font-semiBold text-sm"&gt;
+        Arrecadado: {currencyFormat(goal.current)}
+      &lt;/Text&gt;
+&nbsp;
+      &lt;Text className="text-gray-100 font-regular text-sm flex-1"&gt;
+        Meta: {currencyFormat(goal.total)}
+      &lt;/Text&gt;
+      &lt;Text className="text-gray-100 font-semiBold text-sm flex-1 mb-8 mt-2"&gt;
+        Concluída em: {date}
+      &lt;/Text&gt;
+      &lt;Progress percentage={percentage} /&gt;
+    &lt;/TouchableOpacity&gt;
   );
 }
 &nbsp;</pre></td></tr></table></pre>
