@@ -95,7 +95,7 @@ export default function Details() {
       setTotal(goal.total.toFixed(2).replace(".", ",").toString());
       setIsLoading(false);
     } catch (error) {
-      Alert.alert("Erro", "Não foi possível carregar as transações.");
+      Alert.alert("Erro", "Não foi possível carregar as metas ou transações.");
     }
   }
 
@@ -197,6 +197,7 @@ export default function Details() {
         <View className="mt-8 flex-row items-center justify-between">
           <BackButton />
           <TouchableOpacity
+            testID="settings-button"
             className="p-2 rounded-full items-center justify-center"
             activeOpacity={0.7}
             onPress={handleSettingsBottomSheetOpen}
@@ -216,11 +217,13 @@ export default function Details() {
       <View className="flex-1 bg-slate-200 rounded-t-3xl px-8 mt-10 pt-4 pb-8">
         <Transactions transactions={goal.transactions} />
 
-        <Button
-          testID="add-transaction-button"
-          title="Adicionar nova transação"
-          onPress={handleBottomSheetOpen}
-        />
+        {goal.percentage < 100 && (
+          <Button
+            testID="add-transaction-button"
+            title="Adicionar nova transação"
+            onPress={handleBottomSheetOpen}
+          />
+        )}
       </View>
       <BottomSheet
         ref={inputBottomSheetRef}
