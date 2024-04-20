@@ -10,6 +10,6 @@ describe("Component: Loading", () => {
 
   it("should show loading color", () => {
     render(<Loading />);
-    expect(screen.getByTestId("loading").props.color).toBe(colors.green[500]);
+    expect(screen.getByTestId("loading").props.color).toBe(colors.white);
   });
 });
