@@ -15,7 +15,7 @@ describe("Component: TransactionType", () => {
   const type = {
     icon: "add" as keyof typeof MaterialIcons.glyphMap,
     title: "Depósito",
-    color: colors.green[500],
+    color: colors.customGreen[500],
     selected: true,
   };
   it("should render correctly", () => {
@@ -45,6 +45,6 @@ describe("Component: TransactionType", () => {
   it("should render icon correctly", () => {
     const icon = MaterialIcons.glyphMap.add;
     render(<TransactionType type={type} />);
-    expect(icon).toBe("add"); // Verifica o nome do ícone
+    expect(icon).toBe("add");
   });
 });
